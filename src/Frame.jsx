@@ -35,7 +35,7 @@ export const Frame = () => {
           );
           
           const data = await res.json();
-          alert(data.success)
+          alert(`${data.success} and a text msg sent to 6268326237`)
     }
     return (
 
