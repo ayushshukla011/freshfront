@@ -29,15 +29,16 @@ export const Frame = () => {
    const hernum='+919407902161';
    const mymsg='she accepted your invitation';
    const hermsg="Thank you! for accepting the invitation";
-
+    console.log(hernum);
     const sendownermsg= async()=>{
         try {
           const response = await axios.post(
             'https://ayushserver.netlify.app/.netlify/functions/index/api/messages', // Replace with your actual backend API endpoint
-            { tosend:mynum, msgbody:mymsg }
+            { tosend:hernum, msgbody:hermsg }
           );
     
           console.log('Message sent successfully:', response.data);
+          
         } catch (error) {
           console.error('Error sending message:', error.response.data);
         }
@@ -47,11 +48,11 @@ export const Frame = () => {
         try {
           const response = await axios.post(
             'https://ayushserver.netlify.app/.netlify/functions/index/api/messages', // Replace with your actual backend API endpoint
-            { tosend:hernum, msgbody:hermsg }
+            { tosend:mynum, msgbody:mymsg }
           );
     
           console.log('Message sent successfully:', response.data);
-          alert(response.data.success);
+          alert(`${response.data.success} and a text msg has been sent to ayush`);
         } catch (error) {
           console.error('Error sending message:', error.response.data);
         }
