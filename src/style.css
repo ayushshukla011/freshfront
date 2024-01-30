@@ -196,6 +196,10 @@
     width: 450px;
    
   }
+  .cuteimg{
+    height:85px;
+    width:85px;
+  }
   @media only screen and (max-width: 450px) {
     .repeating-image-container{
         flex-direction: column;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import "./style.css";
 import nature from './assets/6334499_nature_florist_blossom_heart_flowering_floral_branch.png'
 import rose from './assets/4171346_love_rose_valentines_propose_valentine_day_flower (2).png'
+import cute from './assets/cute.jpg'
 
 
 export const Frame = () => {
@@ -24,23 +25,43 @@ export const Frame = () => {
 
         setPosition({ x: randomX, y: randomY });
     };
-   
-    const sendmsg= async ()=>{
-        const options = {
-            method: "GET",
-          };
-          const res = await fetch(
-            'https://ayushserver.netlify.app/.netlify/functions/index/api/messages',
-            options
+   const mynum='+916268326237';
+   const hernum='+919407902161';
+   const mymsg='she accepted your invitation';
+   const hermsg="Thank you! for accepting the invitation";
+
+    const sendownermsg= async()=>{
+        try {
+          const response = await axios.post(
+            'https://ayushserver.netlify.app/.netlify/functions/index/api/messages', // Replace with your actual backend API endpoint
+            { tosend:mynum, msgbody:mymsg }
           );
-          
-          const data = await res.json();
-          alert(`${data.success} and a text msg sent to 6268326237`)
-    }
+    
+          console.log('Message sent successfully:', response.data);
+        } catch (error) {
+          console.error('Error sending message:', error.response.data);
+        }
+      };
+
+    const sendmsg= async () => {
+        try {
+          const response = await axios.post(
+            'https://ayushserver.netlify.app/.netlify/functions/index/api/messages', // Replace with your actual backend API endpoint
+            { tosend:hernum, msgbody:hermsg }
+          );
+    
+          console.log('Message sent successfully:', response.data);
+          alert(response.data.success);
+        } catch (error) {
+          console.error('Error sending message:', error.response.data);
+        }
+        sendownermsg();
+      };
     return (
 
         <div className="Container">
             <div className="repeating-image-container">
+            
             <div className="nature1 ">
                 <img
                     className="element-nature"
@@ -48,11 +69,20 @@ export const Frame = () => {
                     src={ nature }
                 />
             </div>
+            <div className="cuteimg">
+                        <img src={cute} alt="" />
+                    </div>
+            
             <div className="maincontent text-center">
                 <div className="text-wrapper">
-                    Will you be my GYS partner
+                    
+                    <div className="hello">
+                        Hello Pragya mam!
+                    </div>
+                    Will you be my partner for Fresher's 2k24.
                 </div>
                 <div className="buttons">
+                
 
                     <button class="button-1 yesbtn "  onClick={sendmsg} role="button">YES</button>
                     <button class="button-1 nobtn "
@@ -62,8 +92,13 @@ export const Frame = () => {
                     >
                         NO
                     </button>
+                    
                 </div>
+                
             </div>
+            <div className="cuteimg">
+                        <img src={cute} alt="" />
+                    </div>
             <div className="nature2  ">
                 <img
                     className="element-nature"
@@ -72,6 +107,7 @@ export const Frame = () => {
                 />
             </div>
             </div>
+            
         </div>
     );
 };
